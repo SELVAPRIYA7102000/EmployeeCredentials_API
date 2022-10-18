@@ -1,0 +1,252 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@{
+    Layout = "_Layout";
+}
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@model SampleCore.Core.Model.Employee
+        <style>
+   
+            body {
+                        background-color:lightblue;
+
+                    }
+         
+
+            .error{
+                color:darkred;
+            }
+            div {
+                margin-right: 5%;
+                margin-left: 30%
+            }
+
+            label {
+                font-display: block;
+                font-size: large;
+            }
+
+        </style>
+
+
+
+@using (Html.BeginForm("Index", "Home",FormMethod.Post, new { id = "signupForm"}))
+{
+
+    <div>
+       
+        @Html.HiddenFor(model=>model.empid)
+
+        <label>Firstname  </label>
+        @Html.TextBoxFor(model=>model.firstName)
+
+        <br />
+        <br />
+
+
+        <label>Last Name</label>
+        @Html.TextBoxFor(model=>model.lastName)
+
+        <br />
+        <br />
+
+
+        <label>Department:</label>
+       @Html.DropDownList("Department", new List<SelectListItem>
+            {
+            new SelectListItem{ Text="cse"},
+            new SelectListItem{ Text="IT"},
+            new SelectListItem{ Text="eee"},
+            new SelectListItem{Text="ece"},
+            new SelectListItem{Text="Mech"},
+            new SelectListItem{Text="Civil"},
+            }, "----Select Role----")
+        <br />
+        <br />
+
+         <label>Age:</label>
+        @Html.TextBoxFor(model=>model.age)
+        <br />
+        <br />
+
+         <label>Qualification:</label>
+        @Html.TextBoxFor(model=>model.qualification)
+        <br />
+        <br />
+
+        <label>
+            Gender:
+        </label>
+        <br>
+        <label> @Html.RadioButtonFor(m => m.gender,"Male")Male</label>
+
+        <label>@Html.RadioButtonFor(m => m.gender,"Female")Female</label>
+
+        <label>@Html.RadioButtonFor(m => m.gender,"Others")Others</label>
+        <br />
+        <br />
+        <label>Phone</label>
+        @Html.TextBoxFor(model=>model.phone,new{id="phoneno"})
+
+        <br />
+        <br />
+        
+        <label>Address</label>
+        @Html.TextAreaFor(model=>model.address)
+
+        <br />
+        <br />
+        <label>Email</label>
+        @Html.TextBoxFor(model=>model.email)
+
+        <br />
+        <br />
+      
+        <label>Password</label>
+        
+        
+        @Html.TextBoxFor(model=>model.password,new   {type="password",name="password",id="password-field"})
+       <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+    
+        <br />
+        <br />
+       
+        <label>Retype password</label>
+        @Html.TextBoxFor(model=>model.retypePassword,new{type="password"})
+         
+        <br />
+        <br />
+        <button type="submit" onclick="SubmitDetails()" style="background-color:mediumpurple;height:30px;" >Save</button>
+       
+       <a href="https://localhost:7117/Home/Read">
+            <button type="button" style="height:contain;background-color: #4CAF50;"> Go Next</button>
+        </a>
+    </div>
+}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        debugger
+        $("#signupForm").validate({
+
+            rules: {
+                firstName: {
+                    required: true,
+                    minlength: 2,
+                },
+                
+                 lastName: {
+                    required: true,
+                    minlength: 2
+                },
+               
+                 phone: {
+                    
+                     required: true,
+                     number: true,
+                     maxlength: 10,
+                     minlength: 10,
+
+                 },
+                age: {
+                     required: true,
+                     minlength: 2
+
+                },
+                 email: {
+                     
+                     required: true,
+                     email: true,
+                    
+                 },
+                 password: {
+
+                     required: true,
+                     minlength: 5
+
+                 },
+                 retypePassword: {
+                     required: true,
+                     minlength: 5,
+                    equalTo: "#password-field" 
+                 },
+                 qualification : {
+                     required: true,
+                   
+                    
+                 },
+                address: {
+                     required: true,
+                     minlength: 5,
+                }
+
+            },
+
+            messages: {
+                firstName: {
+                    required: " Enter a Firstname",
+                    minlength: " Your username must consist of at least 2 characters",
+                },
+  
+                lastName: {
+                    required: " Enter a Lastname",
+                    minlength: " Your username must consist of at least 2 characters"
+                },
+                 age: {
+                     required: " Enter your age",
+                     minlength: " Your age must consist of at least 2 characters"
+                 },
+                
+                email: {
+                     required: " Enter a EmailId",
+                     minlength: " Your username must consist of at least 2 characters"
+                 },
+                phone : {
+                      number: "Enter valid Number",
+                     required: " Enter a Phone Number",
+                     minlength: " Your PhoneNo must consist of at least 10 characters"
+                 },
+                 password: {
+                    
+                     required: " Enter a password",
+                     minlength: " Your password must consist of at least 5 characters"
+                 },
+                 retypePassword: {
+                     required: " Please enter a password",
+                     minlength: " Your password must be consist of at least 5 characters",
+                    equalTo: " Enter the same password as above"
+                 },
+                qualification: {
+                    required: " Please enter your degree"
+                },
+                address: {
+                     minlength: "Enter your full address using 50 characters"
+                }
+
+            }
+        });
+    });
+
+   function SubmitDetails() {
+        if ($("#signupForm").validate()) {
+            $("#signupForm").submit();
+        }
+    }
+</script>
+<script>
+   $(".toggle-password").click(function() {
+
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+});
+</script>
+
+  

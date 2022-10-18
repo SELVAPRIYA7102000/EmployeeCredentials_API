@@ -1,0 +1,126 @@
+﻿@model SampleCore.Core.Model.Employee
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body style="background-color:white">
+
+
+    @using (Html.BeginForm("Edit", "Home",FormMethod.Post))
+    {
+      
+ <h1 style="align-content:center">Update the Form</h1>
+    <div class="row mb-3">
+        <label class="col-sm-3 ">Student Id</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.empid)
+           
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">First Name</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.firstName)
+            
+        </div>
+    </div>
+    
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">LastName</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.lastName)
+            
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Phone</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.phone)
+           
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Department</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.department)
+            
+        </div>
+    </div>
+     <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Age</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.age)
+            
+        </div>
+    </div>
+     <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Qualification</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.qualification)
+            
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Gender</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.gender)
+            
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Address</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.address)
+            
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">EmailId</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.email)
+            
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.password)
+            
+        </div>
+    </div>
+        <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">RetypePassword</label>
+            <div class="col-sm-9">
+            @Html.EditorFor(model=>model.retypePassword)
+            
+            </div>
+        </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">CreateTimeStamp</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.Created_Time_Stamp)
+           
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">UpdateTimeStamp</label>
+        <div class="col-sm-9">
+            @Html.EditorFor(model=>model.Updated_Time_Stamp)
+           
+        </div>
+    </div>
+    
+        <button type="submit" style="background-color:cornflowerblue">Save</button>
+    
+        }
+
+</body>
+</html>
