@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SampleCore.Core.IServices;
 using SampleCore.Core.Model;
+
 using System.Diagnostics;
 
 namespace EmployeeAPI.Controllers
@@ -21,9 +22,11 @@ namespace EmployeeAPI.Controllers
 
             [HttpGet]
             public IActionResult Index()
-            {
-                
-                return View();
+        {
+            var value = _employeeServices.Dropdown();
+            return Ok(value);
+
+          //  return View();
 
             }
 
@@ -32,7 +35,7 @@ namespace EmployeeAPI.Controllers
             {
                 _employeeServices.CreatePersonEntry(data);
 
-                return RedirectToAction("Read");
+                return Ok(data);
 
             }
 
@@ -66,7 +69,7 @@ namespace EmployeeAPI.Controllers
         #endregion
 
         #region Delete 
-        [HttpGet]
+        [HttpDelete]
         public IActionResult Delete(int employee_id)
             {
              _employeeServices.Delete(employee_id);
@@ -74,8 +77,23 @@ namespace EmployeeAPI.Controllers
             }
 
 
-            #endregion
+        #endregion
 
 
+        [HttpGet]
+        public IActionResult Search(string searchterm)
+        {
+
+       var value= _employeeServices.OnGet(searchterm);
+            return Ok(value);
+        }
+
+
+        [HttpGet]
+        public IActionResult Detail(int employee_id)
+        {
+            var value = _employeeServices.Detail(employee_id);
+            return Ok(value);
         }
     }
+}

@@ -12,7 +12,7 @@ namespace SampleCore.Core.Model
         public int empid { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public string department { get; set; }
+        public string? department { get; set; }
         public string gender { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
@@ -24,5 +24,12 @@ namespace SampleCore.Core.Model
         public bool Is_Deleted { get; set; }
         public DateTime Created_Time_Stamp { get; set; }
         public DateTime Updated_Time_Stamp { get; set; }
+        public int Emp_LocationID { get; set; }
+
+        public string? location { get; set; }
+
+        public DateTime Dateofbirth { get; set; }
+        public string? Dob { get; set; }
     }
+
 }

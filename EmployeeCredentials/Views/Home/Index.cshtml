@@ -9,24 +9,31 @@
         <style>
    
             body {
-                        background-color:lightblue;
-
+                        background-color:white;
+                        margin: 0px 341px 50px 341px;
+            padding: 0px 0px 25px 0px;
+            border: 4px solid black;
+            border-radius: 25px;
+            padding-left: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-attachment:initial;
                     }
          
 
             .error{
                 color:darkred;
             }
-            div {
-                margin-right: 5%;
-                margin-left: 30%
+     
+            #phoneno{
+              border:hidden;
+              
             }
 
-            label {
-                font-display: block;
-                font-size: large;
+            #password-field{
+                border:hidden;
+              
             }
-
         </style>
 
 
@@ -38,21 +45,22 @@
        
         @Html.HiddenFor(model=>model.empid)
 
-        <label>Firstname  </label>
-        @Html.TextBoxFor(model=>model.firstName)
-
-        <br />
-        <br />
-
-
-        <label>Last Name</label>
-        @Html.TextBoxFor(model=>model.lastName)
-
-        <br />
-        <br />
+        <h4>Firstname  </h4>
+       <i class="fa fa-user" aria-hidden="true" style="font-size:24px"></i>
+        @Html.TextBoxFor(model=>model.firstName,new{placeholder="First name"})
+       <hr style="width:102%;text-align:left;margin-left:0">
+       
 
 
-        <label>Department:</label>
+        <h4>Last Name</h4>
+        <i class="fa fa-user" aria-hidden="true" style="font-size:24px"></i>
+        @Html.TextBoxFor(model=>model.lastName,new{placeholder="Last name"})
+          <hr style="width:102%;text-align:left;margin-left:0">
+       
+
+
+        <h4>Department</h4>
+        <i class="fa fa-users" aria-hidden="true" style="font-size:18px"></i>
        @Html.DropDownList("Department", new List<SelectListItem>
             {
             new SelectListItem{ Text="cse"},
@@ -62,59 +70,70 @@
             new SelectListItem{Text="Mech"},
             new SelectListItem{Text="Civil"},
             }, "----Select Role----")
-        <br />
-        <br />
+       <hr style="width:102%;text-align:left;margin-left:0">
 
-         <label>Age:</label>
-        @Html.TextBoxFor(model=>model.age)
-        <br />
-        <br />
-
-         <label>Qualification:</label>
-        @Html.TextBoxFor(model=>model.qualification)
-        <br />
-        <br />
-
-        <label>
-            Gender:
-        </label>
-        <br>
-        <label> @Html.RadioButtonFor(m => m.gender,"Male")Male</label>
-
-        <label>@Html.RadioButtonFor(m => m.gender,"Female")Female</label>
-
-        <label>@Html.RadioButtonFor(m => m.gender,"Others")Others</label>
-        <br />
-        <br />
-        <label>Phone</label>
-        @Html.TextBoxFor(model=>model.phone,new{id="phoneno"})
-
-        <br />
-        <br />
-        
-        <label>Address</label>
-        @Html.TextAreaFor(model=>model.address)
-
-        <br />
-        <br />
-        <label>Email</label>
-        @Html.TextBoxFor(model=>model.email)
-
-        <br />
-        <br />
       
-        <label>Password</label>
+        <h4>DateofBirth</h4>
+         <i class="fa fa-calendar" aria-hidden="true" style="font-size:24px"></i>
+        @Html.TextBoxFor(m => m.Dob, new {placeholder="Dateofbirth", type="date" })
+          <hr style="width:102%;text-align:left;margin-left:0">
+
+
+         <h4>Age</h4>
+         <i class="fa fa-child" aria-hidden="true" style="font-size:24px"></i>
+        @Html.TextBoxFor(model=>model.age,new{placeholder="Age"})
+          <hr style="width:102%;text-align:left;margin-left:0">
+
+          <h4>Location</h4>
+           <i class="fa fa-map-marker" aria-hidden="true" style="font-size:24px"></i>
         
+     @Html.DropDownListFor(m => m.Emp_LocationID, new SelectList(ViewBag.location, "Emp_LocationID", "location"), "Select Location")
+      <hr style="width:102%;text-align:left;margin-left:0">
+         <h4>Qualification</h4>
+         <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:24px"></i>
+        @Html.TextBoxFor(model=>model.qualification,new{placeholder="Degree"})
+         <hr style="width:102%;text-align:left;margin-left:0">
+
+         <h4>   Gender </h4>
+         <i class="fa fa-venus-double" aria-hidden="true"  style="font-size:24px"></i>&nbsp;&nbsp;
         
-        @Html.TextBoxFor(model=>model.password,new   {type="password",name="password",id="password-field"})
+         @Html.RadioButtonFor(m => m.gender,"Male")Male  &nbsp;&nbsp;
+
+        @Html.RadioButtonFor(m => m.gender,"Female")Female   &nbsp;&nbsp;
+
+        @Html.RadioButtonFor(m => m.gender,"Others")Others
+        
+          <hr style="width:102%;text-align:left;margin-left:0">
+        <h4>Phone</h4>
+         <i class="fa fa-phone" style="font-size:24px"></i>
+        @Html.TextBoxFor(model=>model.phone,new{id="phoneno",placeholder="Phone"})
+
+          <hr style="width:102%;text-align:left;margin-left:0">
+        
+        <h4>Address</h4>
+      <i class="fa fa-map-marker" aria-hidden="true" style="font-size:24px"></i>
+        @Html.TextBoxFor(model=>model.address,new{placeholder="Address"})
+
+         <hr style="width:102%;text-align:left;margin-left:0">
+        <h4>Email</h4>
+        <i class="fa fa-envelope" aria-hidden="true"  style="font-size:21px"></i>
+        @Html.TextBoxFor(model=>model.email,new{placeholder="Email"})
+
+         <hr style="width:102%;text-align:left;margin-left:0">
+
+      
+        <h4>Password</h4>
+        <i class="fa fa-key" aria-hidden="true"  style="font-size:24px"></i>  
+        @Html.TextBoxFor(model=>model.password,new   {type="password",name="password",id="password-field",placeholder="password"})
        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
     
-        <br />
-        <br />
+          <hr style="width:102%;text-align:left;margin-left:0">
        
-        <label>Retype password</label>
-        @Html.TextBoxFor(model=>model.retypePassword,new{type="password"})
-         
+        <h4>Retype password</h4>
+        <i class="fa fa-key" aria-hidden="true"  style="font-size:24px"></i>
+
+        @Html.TextBoxFor(model=>model.retypePassword,new{type="password",placeholder="retype password"})
+         <hr style="width:102%;text-align:left;margin-left:0">
         <br />
         <br />
         <button type="submit" onclick="SubmitDetails()" style="background-color:mediumpurple;height:30px;" >Save</button>
@@ -155,6 +174,12 @@
                      required: true,
                      minlength: 2
 
+                },
+                Department: {
+                     required: true
+                },
+                Dob: {
+                     required: true
                 },
                  email: {
                      
@@ -199,7 +224,12 @@
                      required: " Enter your age",
                      minlength: " Your age must consist of at least 2 characters"
                  },
-                
+                Department: {
+                     required: " Choose your Department"
+                },
+                Dob: {
+                    required: " Enter your Date of birth"
+                },
                 email: {
                      required: " Enter a EmailId",
                      minlength: " Your username must consist of at least 2 characters"

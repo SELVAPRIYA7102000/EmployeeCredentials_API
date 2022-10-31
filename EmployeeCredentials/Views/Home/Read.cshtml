@@ -1,4 +1,11 @@
-﻿ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+﻿
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+ 
 
 @model IEnumerable<SampleCore.Core.Model.Employee>
 
@@ -10,7 +17,15 @@
     <a href="https://localhost:7117/">
             <button class="btn btn-primary btn-lg" style="height:contain"> Go back</button>
         </a>
-<table class="table" style="width:130%" >
+
+        <form>
+            <p>
+    <input type="search" placeholder="FirstName" name="searchterm" style="width:500px"/>
+    <input type="submit" value="Search" class="btn btn-primary" asp-action="Search" />
+    <a asp-action="Read">Get all Employees</a>
+            </p>
+        </form>
+<table class="table" id="table_id" style="width:130%" >
     <thead>
         <tr>
              <th >
@@ -29,6 +44,9 @@
              <th >
                 @Html.DisplayNameFor(model => model.age)
             </th>
+             <th >
+                @Html.DisplayNameFor(model => model.Dateofbirth)
+            </th>
             <th >
                 @Html.DisplayNameFor(model => model.qualification)
             </th>
@@ -39,12 +57,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.phone)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model.location)
+            </th>
+
             <th >
                 @Html.DisplayNameFor(model => model.email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.address)
             </th>
+           @*  <th >
+                @Html.DisplayNameFor(model => model.salary)
+            </th>*@
+            
             <th >
                 @Html.DisplayNameFor(model => model.password)
             </th>
@@ -53,12 +79,13 @@
             </th>
           <th > </th>
         </tr> </thead>
+        <tbody>
         @foreach (var i in Model)
-        {
-            <tr>
-                <th >
+    {
+        <tr>
+            <td >
                 @Html.DisplayFor(model => i.empid)
-            </th>
+            </td>
                 
                 <td>
                     @Html.DisplayFor(model => i.firstName)
@@ -73,6 +100,9 @@
                 <td>
                     @Html.DisplayFor(model => i.age)
                 </td>
+                  <td>
+                    @Html.DisplayFor(model => i.Dob)
+                </td>
                 <td>
                     @Html.DisplayFor(model => i.qualification)
                 </td>
@@ -82,12 +112,18 @@
                 <td>
                     @Html.DisplayFor(model => i.phone)
                 </td>
+                 <td>
+                    @Html.DisplayFor(model => i.location)
+                </td>
                 <td>
                     @Html.DisplayFor(model => i.email)
                 </td>
                  <td>
                     @Html.DisplayFor(model => i.address)
                 </td>
+              @*   <td>
+                    @Html.DisplayFor(model => i.salary)
+                </td>*@
                 <td>
                     @Html.DisplayFor(model => i.password)
                 </td>
@@ -96,22 +132,102 @@
                 </td>
                
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {id=i.empid})
-                    <i class="fa fa-edit" style="font-size:24px;color:black;"></i>
+                   @* @Html.ActionLink("Edit", "Edit", new {id=i.empid})
+                    *@
 
-                   @*@Html.ActionLink("", "Edit", new {id=i.empid},
-        new{@class="fa fa-edit",title="Edit",style="font-size:24px;color:cadetblue;"}) <br/>*@
+                   @Html.ActionLink("", "Edit", new {id=i.empid},
+        new{@class="fa fa-edit",title="Edit",style="font-size:24px;color:black;text-decoration:none"}) 
 
-          <button type="submit" style="border:hidden;background-color:white" 
+         @* <button type="submit" style="border:hidden;background-color:white" 
           onclick="return confirm('Are you sure you want to delete this details: @i.empid,@i.firstName,@i.lastName,@i.department,@i.age,@i.qualification,@i.gender,@i.email,@i.address,@i.password,@i.retypePassword')">@Html.ActionLink("Delete", "Delete",
-          new {employee_id = i.empid}) </button>
+          new {employee_id = i.empid}) </button>*@
 
+       <button type="submit" style="border:hidden;background-color:white" 
+          onclick="return confirm('Are you sure you want to delete this details: @i.empid,@i.firstName,@i.lastName,@i.department,@i.age,@i.qualification,@i.gender,@i.email,@i.address,@i.password,@i.retypePassword')">  @Html.ActionLink("", "Delete", new {employee_id = i.empid},
+        new{@class="fa fa-trash-o",title="Delete",style="font-size:24px;color:red;"}) </button>
+
+
+        <button type="button" style="border:hidden;background-color:white"  data-bs-toggle="modal" data-bs-target="#myModal" 
+onclick="partial('@i.empid')">
+                            <i class="fa fa-eye" style="font-size:28px"></i>
+                     </button>
+
+      @*  @Html.ActionLink("", "Delete", new {employee_id = i.empid},
+        new{@class="fa fa-trash-o",title="Delete",style="font-size:24px;color:red;"})
+       *@
+        
+      
+       @* @Html.ActionLink("Details", "Detail", new {employee_id=i.empid})
+  
        
 
-        @Html.ActionLink("", "Delete", new {employee_id = i.empid},
-        new{@class="fa fa-trash-o",title="Delete",style="font-size:24px;color:red;"})
+         @Html.ActionLink("", "Detail", new {employee_id = i.empid},
+        new{@class="fa fa-eye",title="Details",style="font-size:24px;color:black;text-decoration:none"})*@
+
                 </td>
             </tr>
+            
+      
+           
+
+
+
+                     <div class="modal" id="myModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+         <h4 class="modal-title" style="color:darkmagenta;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Employee Details</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" id="values">
+         
+
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+                    @*<div class="modal" id="myModal">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body" id="values">
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+
+                    @*  @Html.Partial("Details", "Customer")*@
+              
         }
-        
+        </thead>
 </table>
+
+        <script>
+    function partial(id) {
+        $("#myModal").css('display', 'block');
+        $("#values").load("/Home/Detail?employee_id=" + id);
+        $("#myModal").modal("show");
+    }
+</script>

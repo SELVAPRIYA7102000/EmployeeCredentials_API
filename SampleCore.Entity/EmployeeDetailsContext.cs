@@ -19,6 +19,16 @@ namespace SampleCore.Entity
         }
 
         public virtual DbSet<Emp_Details> Emp_Details { get; set; }
+        public virtual DbSet<Emp_Location> Emp_Location { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSqlLocalDb;Initial Catalog=EmployeeDetails;Integrated Security=True");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,6 +42,10 @@ namespace SampleCore.Entity
                     .IsUnicode(false);
 
                 entity.Property(e => e.Created_Time_Stamp).HasColumnType("datetime");
+
+                entity.Property(e => e.Date_Of_Birth)
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Department)
                     .IsRequired()
@@ -84,6 +98,27 @@ namespace SampleCore.Entity
                     .IsUnicode(false);
 
                 entity.Property(e => e.Updated_Time_Stamp).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Emp_Location)
+                    .WithMany(p => p.Emp_Details)
+                    .HasForeignKey(d => d.Emp_LocationID)
+                    .HasConstraintName("FK_Emp_Details_Emp_Location");
+            });
+
+            modelBuilder.Entity<Emp_Location>(entity =>
+            {
+                entity.Property(e => e.Created_Time_Stamp)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Location)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Updated_Time_Stamp)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             OnModelCreatingPartial(modelBuilder);

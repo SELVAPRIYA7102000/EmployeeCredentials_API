@@ -15,6 +15,8 @@ namespace SampleCore.Entity
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public DateTime Date_Of_Birth { get; set; }
+        public int? Emp_LocationID { get; set; }
         public int Age { get; set; }
         public string Qualification { get; set; }
         public string Password { get; set; }
@@ -22,5 +24,7 @@ namespace SampleCore.Entity
         public bool Is_Deleted { get; set; }
         public DateTime Created_Time_Stamp { get; set; }
         public DateTime Updated_Time_Stamp { get; set; }
+
+        public virtual Emp_Location Emp_Location { get; set; }
     }
 }

@@ -14,6 +14,9 @@ namespace SampleCore.Core.IRepositories
         public Employee EditForm(int id);
        // public void Update(int id, Employee model);
          public  List<Employee> Reads();
+        public List<Employee> OnGet(string searchterm);
+        public Employee Detail(int employee_id);
+        public List<Employee> Dropdown();
     }
 
 }

@@ -45,5 +45,20 @@ namespace SampleCore.Service.Services
         {
             return _employeeRepository.Reads();
         }
+
+        public List<Employee> OnGet(string searchterm)
+        {
+           return  _employeeRepository.OnGet(searchterm);
+        }
+
+        public Employee Detail(int employee_id)
+        {
+            return _employeeRepository.Detail(employee_id);
+
+        }
+        public List<Employee> Dropdown()
+        {
+            return _employeeRepository.Dropdown();
+        }
     }
 }
