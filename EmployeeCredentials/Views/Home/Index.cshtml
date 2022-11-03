@@ -19,8 +19,7 @@
             padding-bottom: 10px;
             background-attachment:initial;
                     }
-         
-
+      
             .error{
                 color:darkred;
             }
@@ -29,7 +28,9 @@
               border:hidden;
               
             }
-
+            .hide{
+                display:none;
+            }
             #password-field{
                 border:hidden;
               
@@ -41,7 +42,7 @@
 @using (Html.BeginForm("Index", "Home",FormMethod.Post, new { id = "signupForm"}))
 {
 
-    <div>
+    <div id = "clearForm">
        
         @Html.HiddenFor(model=>model.empid)
 
@@ -61,7 +62,7 @@
 
         <h4>Department</h4>
         <i class="fa fa-users" aria-hidden="true" style="font-size:18px"></i>
-       @Html.DropDownList("Department", new List<SelectListItem>
+       @Html.DropDownList("department", new List<SelectListItem>
             {
             new SelectListItem{ Text="cse"},
             new SelectListItem{ Text="IT"},
@@ -136,8 +137,13 @@
          <hr style="width:102%;text-align:left;margin-left:0">
         <br />
         <br />
-        <button type="submit" onclick="SubmitDetails()" style="background-color:mediumpurple;height:30px;" >Save</button>
-       
+        <button id="BtnSubmit" type="submit" onclick="SubmitDetails()" style="background-color:mediumpurple;height:30px;" >Submit</button>
+
+       <button id="Btnedit" type="submit" class="hide" style="background-color:mediumpurple;height:30px;" >Update</button>
+
+        <button id="Btnclr" type="button" class="hide"  onclick="ClearDetails()"style="background-color:mediumpurple;height:30px;" >Clear</button>
+
+
        <a href="https://localhost:7117/Home/Read">
             <button type="button" style="height:contain;background-color: #4CAF50;"> Go Next</button>
         </a>
@@ -148,7 +154,9 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        debugger
+        
+     
+
         $("#signupForm").validate({
 
             rules: {
@@ -175,6 +183,7 @@
                      minlength: 2
 
                 },
+                
                 Department: {
                      required: true
                 },
@@ -266,7 +275,26 @@
         }
     }
 </script>
+
+
 <script>
+    //Hide and show button
+    var edit = @Html.Raw(ViewBag.edit)
+    if (edit == 1) {
+         $("#BtnSubmit").hide();
+     $("#Btnedit").show();
+      $("#Btnclr").show();
+    }
+
+   //clear
+     function ClearDetails()
+     {
+   $("#signupForm").closest('form').find("input,input[type=radio],select").val("");
+   $('input[name=gender]').attr('checked',false);
+
+ } 
+
+ //password eye
    $(".toggle-password").click(function() {
 
   $(this).toggleClass("fa-eye fa-eye-slash");

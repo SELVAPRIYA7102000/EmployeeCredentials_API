@@ -26,9 +26,7 @@ namespace SampleCore.Repositories.Repositories
 
              SampleCore.Entity.Emp_Details emp1 = new SampleCore.Entity.Emp_Details();
 
-                    //var value = emp1.Emp_LocationID;
-                    //var val1 = entity.Emp_Location.Where(x => x.Emp_LocationID == value).SingleOrDefault();
-                    //employee.location = val1.Location;
+                   
                     emp1.Employee_ID = employee.empid;
                     emp1.First_Name = employee.firstName;
                     emp1.Last_Name = employee.lastName;
@@ -53,7 +51,6 @@ namespace SampleCore.Repositories.Repositories
 
                 else
                 {
-                    //  Employee pr = new Employee();
                     var data = entity.Emp_Details.Where(x => x.Employee_ID == employee.empid).SingleOrDefault();
 
                    
@@ -64,7 +61,7 @@ namespace SampleCore.Repositories.Repositories
                         var val1 = entity.Emp_Location.Where(x => x.Emp_LocationID == value).SingleOrDefault();
                         employee.location = val1.Location;
 
-                        //   pr.empid = data.Employee_ID;
+                        
                         data.First_Name = employee.firstName;
                         data.Last_Name = employee.lastName;
                         data.Gender = employee.gender;
@@ -81,8 +78,8 @@ namespace SampleCore.Repositories.Repositories
                         data.Created_Time_Stamp = DateTime.Now;
                         data.Updated_Time_Stamp = DateTime.Now;
                         data.Emp_LocationID = employee.Emp_LocationID;
-
-                       // data1.Salary = employee.salary;
+                        
+                      
                         entity.SaveChanges();
 
                     }
@@ -133,29 +130,7 @@ namespace SampleCore.Repositories.Repositories
             pr.Emp_LocationID = val1.Emp_LocationID;
             return pr;
         }
-        //public void Update(int id, Employee model)
-        //{
-        //    var data = entity.Emp_Details.Where(x => x.Employee_ID == id).SingleOrDefault();
-        //    if (data != null)
-        //    {
-        //        data.Employee_ID = model.empid;
-        //        data.First_Name = model.firstName;
-        //        data.Last_Name = model.lastName;
-        //        data.Department = model.department;
-        //        data.Qualification = model.qualification;
-        //        data.Age = model.age;
-        //        data.Gender = model.gender;
-        //        data.Phone = model.phone;
-        //        data.Address = model.address;
-        //        data.Email = model.email;
-        //        data.Password = model.password;
-        //        data.Retype_Password = model.retypePassword;
-        //        data.Created_Time_Stamp = DateTime.Now;
-        //        data.Updated_Time_Stamp = DateTime.Now;
-        //        entity.SaveChanges();
-        //    }
-
-        //}
+       
 
         #endregion
 
@@ -182,8 +157,8 @@ namespace SampleCore.Repositories.Repositories
                             location = location.Location,
                             address = item.Address,
                             password = item.Password,
-                           
-                           Dob =item.Date_Of_Birth.ToString("yyyy-MM-dd"),
+
+                            Dob = item.Date_Of_Birth.ToString("yyyy-MM-dd"),
                             retypePassword = item.Retype_Password,
 
                             Updated_Time_Stamp = item.Updated_Time_Stamp,
@@ -192,6 +167,37 @@ namespace SampleCore.Repositories.Repositories
                         }).ToList();
             return data;
         }
+        //List<Employee> model = new List<Employee>();
+        //    var data = entity.Emp_Details.Where(x => x.Is_Deleted == false).ToList();
+
+        //    foreach (var item in data)
+        //    {
+        //        Employee pers = new Employee();
+        //        pers.empid = item.Employee_ID;
+        //        pers.firstName = item.First_Name;
+        //        pers.lastName = item.Last_Name;
+        //        pers.department = item.Department;
+        //        pers.qualification = item.Qualification;
+        //        pers.age = item.Age;
+        //        pers.gender = item.Gender;
+        //        pers.phone = item.Phone;
+        //        pers.email = item.Email;
+        //        pers.address = item.Address;
+        //        var value = item.Emp_LocationID;
+        //        var datas = entity.Emp_Location.Where(x => x.Emp_LocationID == value).SingleOrDefault();
+        //        pers.location = datas.Location;
+        //        pers.Dob = item.Date_Of_Birth.ToString("yyyy-MM-dd");
+        //        pers.password = item.Password;
+        //        pers.retypePassword = item.Retype_Password;
+        //        pers.Updated_Time_Stamp = item.Updated_Time_Stamp;
+        //        pers.Created_Time_Stamp = item.Created_Time_Stamp;
+        //        model.Add(pers);
+        //    }
+
+        //    return model;
+        //}
+
+
         public List<Employee> Dropdown()
         {
             List<Employee> model = new List<Employee>();
@@ -212,31 +218,7 @@ namespace SampleCore.Repositories.Repositories
         }
 
 
-        //    List<Employee> model = new List<Employee>();
-        //    var data = entity.Emp_Details.Where(x => x.Is_Deleted == false).ToList();
-
-        //    foreach (var item in data)
-        //    {
-        //        Employee pers = new Employee();
-        //        pers.empid = item.Employee_ID;
-        //        pers.firstName = item.First_Name;
-        //        pers.lastName = item.Last_Name;
-        //        pers.department = item.Department;
-        //        pers.qualification = item.Qualification;
-        //        pers.age = item.Age;
-        //        pers.gender = item.Gender;
-        //        pers.phone = item.Phone;
-        //        pers.email = item.Email;
-        //        pers.address = item.Address;
-        //        pers.password = item.Password;
-        //        pers.retypePassword = item.Retype_Password;
-        //        pers.Updated_Time_Stamp = item.Updated_Time_Stamp;
-        //        pers.Created_Time_Stamp = item.Created_Time_Stamp;
-        //        model.Add(pers);
-        //    }
-
-        //    return model;
-        //}
+       
 
 
         #endregion

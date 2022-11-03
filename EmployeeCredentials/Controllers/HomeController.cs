@@ -120,9 +120,10 @@ namespace EmployeeCredentials.Controllers
                     emp = readTask.Result;
                 }
             }
-
-
+            //ViewBag.edit = 1; for button hiding
+            ViewBag.edit = 1;
                 return View("Index",emp);
+
             }
         
   
@@ -159,8 +160,6 @@ namespace EmployeeCredentials.Controllers
         [HttpGet]
         public IActionResult Search(string searchterm)
         {
-            if (searchterm != null)
-            {
                 List<Employee> emp = null;
                 using (HttpClient client = new HttpClient())
                 {
@@ -175,14 +174,12 @@ namespace EmployeeCredentials.Controllers
                         readTask.Wait();
                         emp=(List<Employee>)readTask.Result;
                     }
-                  //  _employeeServices.OnGet(searchterm);
+                  
                     return View("Read",emp);
                 }
-            }
-            else
-            {
-                return RedirectToAction("Read");
-            }
+               
+            
+            
         }
 
 

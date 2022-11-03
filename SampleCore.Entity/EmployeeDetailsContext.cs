@@ -49,9 +49,8 @@ namespace SampleCore.Entity
 
                 entity.Property(e => e.Department)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -66,9 +65,8 @@ namespace SampleCore.Entity
 
                 entity.Property(e => e.Gender)
                     .IsRequired()
-                    .HasMaxLength(6)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .HasMaxLength(8)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Last_Name)
                     .IsRequired()
