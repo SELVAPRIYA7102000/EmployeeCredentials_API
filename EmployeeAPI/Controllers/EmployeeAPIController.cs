@@ -73,7 +73,7 @@ namespace EmployeeAPI.Controllers
         public IActionResult Delete(int employee_id)
             {
              _employeeServices.Delete(employee_id);
-            return View();
+            return Ok();
             }
 
 

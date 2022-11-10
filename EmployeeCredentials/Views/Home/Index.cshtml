@@ -8,17 +8,18 @@
 @model SampleCore.Core.Model.Employee
         <style>
    
-            body {
+            body {                
                         background-color:white;
                         margin: 0px 341px 50px 341px;
-            padding: 0px 0px 25px 0px;
-            border: 4px solid black;
-            border-radius: 25px;
-            padding-left: 50px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            background-attachment:initial;
+                        padding: 0px 0px 25px 0px;
+                        border: 4px solid black;
+                        border-radius: 25px;
+                        padding-left: 50px;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        background-attachment:initial;
                     }
+                   
       
             .error{
                 color:darkred;
@@ -55,7 +56,7 @@
 
         <h4>Last Name</h4>
         <i class="fa fa-user" aria-hidden="true" style="font-size:24px"></i>
-        @Html.TextBoxFor(model=>model.lastName,new{placeholder="Last name"})
+        @Html.TextBoxFor(model=>model.lastName,new{placeholder="Last name", maxlength=10})
           <hr style="width:102%;text-align:left;margin-left:0">
        
 
@@ -162,12 +163,13 @@
             rules: {
                 firstName: {
                     required: true,
-                    minlength: 2,
+                  
+                    maxlength:10
                 },
                 
                  lastName: {
-                    required: true,
-                    minlength: 2
+                    required: true,            
+                   
                 },
                
                  phone: {
@@ -180,12 +182,14 @@
                  },
                 age: {
                      required: true,
-                     minlength: 2
+                     minlength: 2,
+                     maxlength:2
 
                 },
                 
-                Department: {
-                     required: true
+                department: {
+                     required: true,
+                     maxlength:5
                 },
                 Dob: {
                      required: true
@@ -194,46 +198,51 @@
                      
                      required: true,
                      email: true,
+                     maxlength:15
                     
                  },
                  password: {
 
                      required: true,
-                     minlength: 5
+                     minlength: 5,
+                     maxlength:7
 
                  },
                  retypePassword: {
                      required: true,
                      minlength: 5,
+                     maxlength:7,
                     equalTo: "#password-field" 
                  },
                  qualification : {
                      required: true,
+                     maxlength:5
                    
                     
                  },
                 address: {
                      required: true,
                      minlength: 5,
+                     maxlength:50
                 }
 
             },
 
             messages: {
                 firstName: {
-                    required: " Enter a Firstname",
-                    minlength: " Your username must consist of at least 2 characters",
+                    required: " Enter a Firstname"
+                   
                 },
   
                 lastName: {
-                    required: " Enter a Lastname",
-                    minlength: " Your username must consist of at least 2 characters"
+                    required: " Enter a Lastname"
+                    
                 },
                  age: {
                      required: " Enter your age",
                      minlength: " Your age must consist of at least 2 characters"
                  },
-                Department: {
+                department: {
                      required: " Choose your Department"
                 },
                 Dob: {
@@ -294,7 +303,11 @@
 
  } 
 
- //password eye
+ 
+</script>
+
+  <script>
+      //password eye
    $(".toggle-password").click(function() {
 
   $(this).toggleClass("fa-eye fa-eye-slash");
@@ -305,6 +318,4 @@
     input.attr("type", "password");
   }
 });
-</script>
-
-  
+  </script>

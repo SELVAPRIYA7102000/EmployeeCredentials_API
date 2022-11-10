@@ -115,8 +115,8 @@ namespace SampleCore.Repositories.Repositories
 
             pr.Dob = data.Date_Of_Birth.ToString("yyyy-MM-dd");
             pr.empid = data.Employee_ID;
-            pr.firstName = data.First_Name;
-            pr.lastName = data.Last_Name;
+            pr.firstName = data.First_Name.Trim();
+            pr.lastName = data.Last_Name.Trim();
             pr.gender = data.Gender;
             pr.age = data.Age;
             pr.department = data.Department;
